@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Edit Info</title>
+    <link rel="stylesheet" href="/static/css/edit_profile.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+
+        <ul class="nav_list" list-style="none">
+            <ol list-style="none">
+                <a href="{{url_for('user.edit_profile')}}">
+                    <span class="links_name">Edit Profile</span>
+                </a>
+
+            </ol>
+            <ol>
+                <a href="{{url_for('user.change_password')}}">
+                    <span class="links_name">Change Password</span>
+                </a>
+            </ol>
+            <ol>
+                <a href="{{url_for('user.manage_payment')}}">
+                    <span class="links_name">Manage Payment</span>
+                </a>
+            </ol>
+            <ol>
+                <a href="{{url_for('user.order_history')}}">
+                    <span class="links_name">Booking History</span>
+                </a>
+            </ol>
+            <ol style="margin-top: 400px;">
+                <a href="{{url_for('user.view')}}">
+                    <span class="links_name">Return Home</span>
+                </a>
+            </ol>
+            
+        </ul>
+
+    </div>
+    <form class="form" method="post">
+        <h2>Personal Information</h2>
+        <input class="form-input" type="name" placeholder="First Name" name="firstName" value="{{user['firstName']}}" required>
+        <input class="form-input" type="name" placeholder="Last Name" name="lastName" value="{{user['lastName']}}" required>
+        <input class="form-input" type="text" placeholder="Phone Number" name="phone" value="{{user['phone']}}" required>
+
+        <div>
+            <button type="submit" class="btn">Save Changes</button>
+        </div>
+    </form>
+    <form class="form2" method="post">
+        <input class="form-input" type="address" placeholder="Address" name="street" value="{{user_address['street']}}" required>
+        <input class="form-input" type="address" placeholder="City" name="city" value="{{user_address['city']}}" required>
+        <select class="form-input" name="state" required>
+            <option value="default">Select State *</option>
+            <option value="AL" {% if 'AL' == user_address['state'] %} selected {% endif %} >Alabama</option>
+            <option value="AK" {% if 'AK' == user_address['state'] %} selected {% endif %} >Alaska</option>
+            <option value="AZ" {% if 'AZ' == user_address['state'] %} selected {% endif %} >Arizona</option>
+            <option value="AR" {% if 'AR' == user_address['state'] %} selected {% endif %} >Arkansas</option>
+            <option value="CA" {% if 'CA' == user_address['state'] %} selected {% endif %} >California</option>
+            <option value="CO" {% if 'CO' == user_address['state'] %} selected {% endif %} >Colorado</option>
+            <option value="CT" {% if 'CT' == user_address['state'] %} selected {% endif %} >Connecticut</option>
+            <option value="DE" {% if 'DE' == user_address['state'] %} selected {% endif %} >Delaware</option>
+            <option value="DC" {% if 'DC' == user_address['state'] %} selected {% endif %} >District Of Columbia</option>
+            <option value="FL" {% if 'FL' == user_address['state'] %} selected {% endif %} >Florida</option>
+            <option value="GA" {% if 'GA' == user_address['state'] %} selected {% endif %} >Georgia</option>
+            <option value="HI" {% if 'HI' == user_address['state'] %} selected {% endif %} >Hawaii</option>
+            <option value="ID" {% if 'ID' == user_address['state'] %} selected {% endif %} >Idaho</option>
+            <option value="IL" {% if 'IL' == user_address['state'] %} selected {% endif %} >Illinois</option>
+            <option value="IN" {% if 'IN' == user_address['state'] %} selected {% endif %} >Indiana</option>
+            <option value="IA" {% if 'IA' == user_address['state'] %} selected {% endif %} >Iowa</option>
+            <option value="KA" {% if 'KA' == user_address['state'] %} selected {% endif %} >Kansas</option>
+            <option value="KY" {% if 'KY' == user_address['state'] %} selected {% endif %} >Kentucky</option>
+            <option value="LA" {% if 'LA' == user_address['state'] %} selected {% endif %} >Louisiana</option>
+            <option value="ME" {% if 'ME' == user_address['state'] %} selected {% endif %} >Maine</option>
+            <option value="MD" {% if 'MD' == user_address['state'] %} selected {% endif %} >Maryland</option>
+            <option value="MA" {% if 'MA' == user_address['state'] %} selected {% endif %} >Massachusetts</option>
+            <option value="MI" {% if 'MI' == user_address['state'] %} selected {% endif %} >Michigan</option>
+            <option value="MN" {% if 'MN' == user_address['state'] %} selected {% endif %} >Minnesota</option>
+            <option value="MS" {% if 'MS' == user_address['state'] %} selected {% endif %} >Mississippi</option>
+            <option value="MO" {% if 'MO' == user_address['state'] %} selected {% endif %} >Missouri</option>
+            <option value="MT" {% if 'MT' == user_address['state'] %} selected {% endif %} >Montana</option>
+            <option value="NE" {% if 'NE' == user_address['state'] %} selected {% endif %} >Nebraska</option>
+            <option value="NV" {% if 'NV' == user_address['state'] %} selected {% endif %} >Nevada</option>
+            <option value="NH" {% if 'NH' == user_address['state'] %} selected {% endif %} >New Hampshire</option>
+            <option value="NJ" {% if 'NJ' == user_address['state'] %} selected {% endif %} >New Jersey</option>
+            <option value="NM" {% if 'NM' == user_address['state'] %} selected {% endif %} >New Mexico</option>
+            <option value="NY" {% if 'NY' == user_address['state'] %} selected {% endif %} >New York</option>
+            <option value="NC" {% if 'NC' == user_address['state'] %} selected {% endif %} >North Carolina</option>
+            <option value="ND" {% if 'ND' == user_address['state'] %} selected {% endif %} >North Dakota</option>
+            <option value="OH" {% if 'OH' == user_address['state'] %} selected {% endif %} >Ohio</option>
+            <option value="OK" {% if 'OK' == user_address['state'] %} selected {% endif %} >Oklahoma</option>
+            <option value="OR" {% if 'OR' == user_address['state'] %} selected {% endif %} >Oregon</option>
+            <option value="PA" {% if 'PA' == user_address['state'] %} selected {% endif %} >Pennsylvania</option>
+            <option value="RI" {% if 'RI' == user_address['state'] %} selected {% endif %} >Rhode Island</option>
+            <option value="SC" {% if 'SC' == user_address['state'] %} selected {% endif %} >South Carolina</option>
+            <option value="SD" {% if 'SD' == user_address['state'] %} selected {% endif %} >South Dakota</option>
+            <option value="TN" {% if 'TN' == user_address['state'] %} selected {% endif %} >Tennessee</option>
+            <option value="TX" {% if 'TX' == user_address['state'] %} selected {% endif %} >Texas</option>
+            <option value="UT" {% if 'UT' == user_address['state'] %} selected {% endif %} >Utah</option>
+            <option value="VT" {% if 'VT' == user_address['state'] %} selected {% endif %} >Vermont</option>
+            <option value="VA" {% if 'VA' == user_address['state'] %} selected {% endif %} >Virginia</option>
+            <option value="WA" {% if 'WA' == user_address['state'] %} selected {% endif %} >Washington</option>
+            <option value="WV" {% if 'WV' == user_address['state'] %} selected {% endif %} >West Virginia</option>
+            <option value="WI" {% if 'WI' == user_address['state'] %} selected {% endif %} >Wisconsin</option>
+            <option value="WY" {% if 'WY' == user_address['state'] %} selected {% endif %} >Wyoming</option>
+        </select>
+        <input class="form-input" type="address" placeholder="Zipcode" name="zipcode" value="{{user_address['zipcode']}}" required>
+        <div>
+            <button type="submit" class="btn">Save Changes</button>
+        </div>
+    </form>
+</div>
+<script src="signup.js"></script>
+</body>
+</html>

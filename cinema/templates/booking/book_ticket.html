@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/Roboto.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/fonts/fontawesome5-overrides.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/CheckOutPage-V10.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/shopping-ecommerce-products.css') }}">
+    <link rel="stylesheet" href="/static/css/stylesheet.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/book_ticket.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/search-control.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean" style="height: 54px;margin-bottom: 0px;">
+        <div class="container-fluid"><a class="navbar-brand" href="{{url_for('user.view')}}">Cinema E-Booking</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                </ul>
+            </div>
+            {% if logged_in %}
+            <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.edit_profile')}}" style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 10px;">Profile</a>
+            <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.logout')}}" style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px;">Logout</a>
+            {% else %}
+            <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.logout')}}" style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px;">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+<form method="post">
+    <h2 style="text-align: center;color:black">Add Tickets</h2>
+    <div style="display:flex;">
+        <div class="movie-poster" style="margin-left: 20px;">
+            <img src="{{movie['trailerPictureLink']}}" class="movie-poster" style="width: 350px; height:500px;">
+            <h3 class="Movie Name" style="margin-left: 80px; font-weight: bold; color: black;">{{movie['title']}}</h3>
+        </div>
+        <div style="padding: 20px;">
+            <table>
+                <tr>
+                    <td>
+                        <p style="padding: 20px; font-size: 20px;color:black">For Adult: ${{'%0.2f' % adult}}</p>
+                    </td>
+                    <td>
+                        <p style="font-size: 20px;color:black">QTY: <input type="number" min="0" value="1" name="num_adult_tickets"
+                                                                required style="width:40px;color: black"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p style="padding: 20px; font-size: 20px;color:black">For Children: ${{'%0.2f' % child}}</p>
+                    </td>
+                    <td>
+                        <p style="font-size: 20px;color:black">QTY: <input type="number" value="1" min="0" name="num_child_tickets"
+                                                                required style="width:40px; color: black;"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p style="padding: 20px;font-size: 20px; color:black">For Senior: ${{'%0.2f' % senior}}</p>
+                    </td>
+
+                    <td>
+                        <p style="font-size: 20px;color:black">QTY: <input type="number" value="1" min="0"
+                                                                name="num_senior_tickets" required style="width:40px;color: black">
+                        </p>
+                    </td>
+                </tr>
+            </table>
+
+            <p style="margin-left: 20px;">
+                <button class="btn btn-primary" type="submit" name="action" value="update"
+                        style="margin-top: 10px;background: #950740; margin-left: 10px;border-style: none;">
+                    Select Seats
+                </button>
+            </p>
+        </div>
+
+    </div>
+
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/signup.js"></script>
+</form>
+<form>
+    {% if error_message %}
+    <!--error popup-->
+    <div class="modal-dialog over">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>Something's not right...</h1>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="text-center">
+                                <p>{{error_message}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <button class="btn" aria-hidden="true"
+                            onclick="location.href = {{url_for('booking.book_tickets', show_id=show_id)}}">Ok
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</form>
+</body>
+</html>

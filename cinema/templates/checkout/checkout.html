@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Cinema E-Booking</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="/static/css/Roboto.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/static/css/CheckOutPage-V10.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/shopping-ecommerce-products.css">
+    <link rel="stylesheet" href="/static/css/signup.css">
+    <link rel="stylesheet" href="/static/css/stylesheet.css">
+    <style>
+        hr {
+            background-color: black;
+            border-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean" style="height: 54px;margin-bottom: 0px;">
+        <div class="container-fluid"><a class="navbar-brand" href="{{url_for('user.view')}}">Cinema E-Booking</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                </ul>
+            </div>
+            <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.edit_profile')}}" style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 10px;">Profile</a>
+
+            <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.logout')}}" style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px;">Logout</a>
+
+        </div>
+    </nav>
+    <header class="text-center text-white masthead parallax">
+        <div class="row parallax-blur">
+            <div class="col-lg-12">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-1">
+                    <img src="{{movie.trailerPictureLink}}" style="max-width: 100px; max-height: 150px;">
+                </div>
+                <div class="col-lg-2">
+                    <div style="justify-content: left;">
+                        <h4>{{movie.title}}</h4>
+                        <br>
+                        <p style="font-weight: bold;">Cinema Cinemas</p>
+                        <P>123 GO DAWGS DR</P>
+                        <P>Athens, GA 30605</P>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </header>
+    <!-- Rows for tickets -->
+        <div class="row">
+            <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <label style="color: rgb(0, 0, 0); font-weight: bold">Show Date: {{booking_date.strftime('%Y-%m-%d %H:%M')}}</label>
+                    </div>
+                    <div class="row">
+                        <p style="font-weight: bold;">Showroom {{showroom}}</p>
+                    </div>
+                    <div class="row">
+                        <label>1. Number of Tickets</label>
+                    </div>
+                </div>
+        </div>
+        <div class="row" style="background-color: white;">
+            <hr/>
+            <div class="col-lg-3"></div>
+                <div class="col-lg-5" >
+                    <a style="color: black;">{{num_adult}} Adult, {{num_child}} Child, {{num_senior}} Senior</a>
+                </div>
+                <div class="col-lg-1" >
+                    <a style="color: black;" href="{{url_for('booking.book_tickets', show_id=show_id)}}">></a>
+                </div>
+        </div>
+        <!-- Rows for seats -->
+        <div class="row">
+            <hr/>
+            <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <label>2. Selected Seats</label>
+                </div>
+        </div>
+        <div class="row" style="background-color: white;">
+            <hr />
+            <div class="col-lg-3"></div>
+                <div class="col-md-4" >
+                    <p style="color: black;">My Seats</p>
+                </div>
+                <div class="col-md-1" >
+                    <p style="color: black;">
+                        {{seats}}
+                    </p>
+                </div>
+                <div class="col-md-1" style="align-items: right;">
+                    <a style="color: black;" href="{{url_for('booking.select_seats')}}">></a>
+                </div>
+        </div>
+        <!-- Rows for review and totals -->
+        <div class="row">
+            <hr/>
+            <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <label>Review</label>
+                </div>
+        </div>
+        <div class="row" style="background-color: white;">
+            <hr />
+            <div class="col-lg-3"></div>
+                <div class="col-md-5" >
+                    <p style="color: black;">Adult Ticket(s)</p>
+                </div>
+                <div class="col-md-1" >
+                    <p style="color: black;">${{'%0.2f' % adult_price}}</p>
+                </div>
+        </div>
+        <div class="row" style="background-color: white;">
+            <div class="col-lg-3"></div>
+                <div class="col-md-5" >
+                    <p style="color: black;">Child Ticket(s)</p>
+                </div>
+                <div class="col-md-1" >
+                    <p style="color: black;">${{'%0.2f' % child_price}}</p>
+                </div>
+        </div>
+        <div class="row" style="background-color: white;">
+            <div class="col-lg-3"></div>
+                <div class="col-md-5" >
+                    <p style="color: black;">Senior Ticket(s)</p>
+                </div>
+                <div class="col-md-1" >
+                    <p style="color: black;">${{'%0.2f' % senior_price}}</p>
+                </div>
+        </div>
+        <div class="row" style="background-color: white;">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6"><hr /></div>
+        </div>
+        <div class="row" style="background-color: white;">
+            <div class="col-lg-3"></div>
+                <div class="col-md-5" >
+                    <p style="color: black;">Booking Fee</p>
+                </div>
+                <div class="col-md-1" >
+                    <p style="color: black;">${{'%0.2f' % booking_fee}}</p>
+                </div>
+        </div>
+        <div class="row" style="background-color: white;">
+            <div class="col-lg-3"></div>
+                <div class="col-md-5" >
+                    <p style="color: black;">Sales Tax</p>
+                </div>
+                <div class="col-md-1" >
+                    <p style="color: black;">${{'%0.2f' % sales_tax}}</p>
+                </div>
+        </div>
+        <div class="row" style="background-color: white;">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6"><hr /></div>
+        </div>
+        <div class="row" style="background-color: white;">
+            <div class="col-lg-3"></div>
+                <div class="col-md-5" >
+                    <p style="color: black; font-weight: bold;">Total</p>
+                </div>
+                <div class="col-md-1" >
+                    <p style="color: black; font-weight: bold">${{'%0.2f' % total_price}}</p>
+                </div>
+        </div>
+            <div class="row" style="background-color: white;">
+                <div class="col-md-3 col-lg-4 col-xl-4 mx-auto">
+                    <form>
+                        <div class="row">
+                            <a class="btn btn-primary ms-auto" role="button" href="{{url_for('checkout.payment')}}" style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-bottom: 20px;">Proceed to Payment</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/static/js/signup.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+
+</html>

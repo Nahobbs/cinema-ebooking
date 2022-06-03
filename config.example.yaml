@@ -1,0 +1,44 @@
+base_admin:
+  first_name:
+  last_name:
+  email:
+  phone_num:
+  password:
+sales_tax: 0.07
+default_movies:
+  - 'Primer'
+  - 'No Time To Die'
+  - 'Inception'
+  - "Zack Snyder's Justice League"
+  - 'The Prestige'
+  - 'Jaws'
+  - 'Titanic'
+  - 'Shaun of the Dead'
+  - 'Star Trek First Contact'
+  - 'Twelve Monkeys'
+  - 'Halloween Kills'
+  - 'The Last Samurai'
+  - 'Avatar'
+  - 'Dances With Wolves'
+  - 'National Treasure'
+base_user:
+  first_name:
+  last_name:
+  email:
+  phone_num:
+  password:
+db_auth:
+  user: 'root'
+  password:
+  host: 'localhost'
+  database: 'moviebookings'
+confirmation_email:
+  secret_key: 'my_precious'
+  security_password_salt: 'go_dawgs'
+  expiration: 3600
+  smtp_server: "smtp.gmail.com"
+  smtp_port: 587
+  sending_email: "cinemaebookinguga@gmail.com"
+  email_password: "jakenikhilivanshivamnick1234"
+session:
+  secret_key: 'sick_em_woo_woo_woo_woo'

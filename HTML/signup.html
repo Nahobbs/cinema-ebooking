@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="assets/css/Roboto.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/CheckOutPage-V10.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="assets/css/shopping-ecommerce-products.css">
+    <link rel="stylesheet" href="assets/css/signup.css">
+    <link rel="stylesheet" href="assets/css/stylesheet.css">
+</head>
+
+<body class="signin-body" style="background: #f8f9fa;">
+<div class="signin-container">
+    <div class="signin">
+        <form class="signin-form">
+            <h1>Sign In</h1>
+            <div class="social-container">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your account</span>
+            <input class="form-input" type="email" placeholder="Email">
+            <input class="form-input" type="password" placeholder="Password">
+            <a href="#" data-target="#pwdModal" data-toggle="modal">Forgot your password?</a>
+            <div style="display: inline-flex; margin-top: 10px;">
+                <input id="rem-me" type="checkbox" name="remember-me" value="true">
+                <label>Remember me?</label>
+            </div>
+            <button type="submit" class="signin-btn">Sign in</button>
+            <span class="mobile-only">New Here?</span>
+            <button type="button" class="signin-btn mobile-only">Sign up</button>
+        </form>
+        <div class="side">
+            <h1>WELCOME!</h1>
+            <p>SIGNUP TO START ENJOYING YOUR MOVIE BENEFITS</p>
+            <button class="signin-btn">Sign up</button>
+        </div>
+    </div>
+    <div class="signup hidden">
+        <form class="signin-form" method="post">
+            <h1>Create Account</h1>
+            <div class="social-container">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="name-field" id="firstControl">
+                <input class="form-input" type="text" placeholder="First Name" id="f-name">
+                <input class="form-input" type="text" placeholder="Last Name" id="l-name">
+                <small>error message</small>
+            </div>
+            <div class="signin-form-control">
+                <input class="form-input" type="password" placeholder="Password" id="password">
+                <small>error message</small>
+            </div>
+            <div class="signin-form-control">
+                <input type="password" placeholder="Re-enter Password" id="password2">
+                <small>error message</small>
+            </div>
+            <div class="signin-form-control">
+                <input type="text" placeholder="Email" id="email">
+                <small>error message</small>
+            </div>
+            <div class="signin-form-control">
+                <input type="text" placeholder="Phone" id="phone">
+                <small>error message</small>
+            </div>
+            <div class="sign-in-check" style="display: inline-flex;">
+                <input id="sub-in" type="checkbox" name="subscribe" value="true">
+                <label>Subscribe to promotions?</label>
+            </div>
+            <button type="submit" class="signin-btn">Sign Up</button>
+            <span class="mobile-only">New Here?</span>
+            <button type="button" class="signin-btn mobile-only">Sign up</button>
+        </form>
+        <div class="side">
+            <h1>Welcome Back!</h1>
+            <p>To keep connected with us please login with your personal info</p>
+            <button class="signin-btn">Sign in</button>
+        </div>
+    </div>
+</div>
+<!--modal-->
+<div id="pwdModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1 class="text-center">Forgot your password?</h1>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="text-center">
+
+                                <p>If you have forgotten your password you can reset it here.</p>
+                                <div class="panel-body">
+                                    <form class="forgot-form">
+                                        <div class="form-group">
+                                            <input class="form-control input-lg" placeholder="E-mail Address"
+                                                   name="email" type="email">
+                                        </div>
+                                        <input class="btn btn-lg btn-primary btn-block ms-auto"
+                                               style="background: #950740;" value="Send Recovery Email" type="submit">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="signup.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/signup.js"></script>
+</body>
+
+</html>

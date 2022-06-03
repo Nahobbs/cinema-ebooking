@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Seats</title>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="/static/css/Roboto.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="/static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/static/css/CheckOutPage-V10.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/shopping-ecommerce-products.css">
+    <link rel="stylesheet" href="/static/css/signup.css">
+    <link rel="stylesheet" href="/static/css/seat_selection.css">
+
+</head>
+<body>
+<nav class="navbar navbar-light navbar-expand bg-light navigation-clean"
+     style="margin-bottom: 0px;height: 54px;background: #000; width: 100%;">
+    <div class="container-fluid"><a class="navbar-brand" href="{{url_for('user.view')}}">Cinema E-Booking</a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav">
+                <li class="nav-item"></li>
+                <li class="nav-item"><a class="nav-link active" href="#out-now"></a></li>
+                <li class="nav-item"><a class="nav-link" href="#coming-soon"></a></li>
+                <li class="nav-item"></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+            </ul>
+        </div>
+        <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.search')}}"
+           style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Search</a>
+        <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.edit_profile')}}"
+           style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Profile</a>
+        <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.logout')}}"
+           style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Logout</a>
+        <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.view')}}"
+           style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Home</a>
+    </div>
+</nav>
+<form action="post">
+    <div class="movie-container">
+        <div id="movie">
+            <a class="btn btn-primary ms-auto" role="button" onclick="sendSeatData()"
+                 style="background: #950740;border-style: none;box-shadow: 3px 4px 5px var(--bs-gray-800);margin-left: 43px; float: right;">Checkout</a>
+        </div>
+    </div>
+
+    <ul class="showcase">
+        <li>
+            <div class="seat"></div>
+            <small>Empty</small>
+        </li>
+        <li>
+            <div class="seat selected"></div>
+            <small>Selected</small>
+        </li>
+        <li>
+            <div class="seat occupied"></div>
+            <small>Occupied</small>
+        </li>
+    </ul>
+
+    <div class="container">
+        <div class="screen" style="text-align: center; font-size: 20px;">FRONT OF SCREEN</div>
+        {% for i in range(0,8) %}
+        <div class="row">
+            {% for seat in row[i] %}
+            {% if seat.ticketID is none %}
+            <div row="{{seat.rowLetter}}" number="{{seat.seatNum}}" class="seat"></div>
+            {% else %}
+            <div row="{{seat.rowLetter}}" number="{{seat.seatNum}}" class="seat occupied"></div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</form>
+<script src="/static/js/seat-selection.js"></script>
+<script type="text/javascript">
+        setTicketQuantity({{num_tickets}});
+</script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="assets/js/script.js"></script>
+<script src="assets/js/signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/Roboto.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/fonts/fontawesome5-overrides.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/CheckOutPage-V10.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/shopping-ecommerce-products.css') }}">
+    <link rel="stylesheet" href="/static/css/stylesheet.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/search-control.css') }}">
+
+</head>
+<body>
+<nav class="navbar navbar-light navbar-expand bg-light navigation-clean"
+     style="margin-bottom: 0px;height: 54px;background: #f8f9fa;">
+    <div class="container-fluid"><a class="navbar-brand" href="{{url_for('user.view')}}">Cinema E-Booking</a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav">
+                <li class="nav-item"></li>
+                <li class="nav-item"><a class="nav-link active" href="#out-now"></a></li>
+                <li class="nav-item"><a class="nav-link" href="#coming-soon"></a></li>
+                <li class="nav-item"></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+            </ul>
+        </div>
+        <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.search')}}"
+           style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Search</a>
+        <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.edit_profile')}}"
+           style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Profile</a>
+        <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.logout')}}"
+           style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Logout</a>
+        <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.view')}}"
+           style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Home</a>
+    </div>
+</nav>
+</div>
+
+<!--Movie Info-->
+<div class="info-container">
+    <div>
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{movie['trailerVideoLink']}}"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </div>
+    <div id="poster">
+        <img src="{{movie['trailerPictureLink']}}" width="220px" height="315px">
+    </div>
+    <div class="h1">
+        <h1> {{movie['title']}}</h1>
+        <p class="rating">Ratings: <span class="fa fa-star checked"></span>
+            {% for i in range(movie['reviews']|int) %}
+            <span class="fa fa-star checked"></span>
+            {% endfor %}
+        </p>
+        <p class="rating">{{movie['duration']}} Minutes | {{movie['mpaa']}}</p>
+        <p class="rating"> {{movie['genre']}} </p>
+        <!--Modal-->
+        <a role="button" id="modal_open" class="btn btn-primary ms-auto"
+           style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px;">
+            View Shows
+        </a>
+
+        <div class="modal-container" id="modalcontainer">
+            <div id="modal">
+                <div id="cancel">
+                    <a class="close" role="button"
+                       href="{{url_for('user.movie_info', movie_id=movie['movieID'])}}">x</a>
+                </div>
+                <h1>Show Times</h1>
+                <br>
+                <div id="date-day">
+                    <form method="post">
+                        {% if date %}
+                        <input type="date" value="{{date}}" name="show_date" required>
+                        {% else %}
+                        <input type="date" name="show_date" required>
+                        {% endif %}
+                        <button class="btn btn-primary" type="submit" name="action" value="update"
+                                style="margin-top: 10px;background: #1a1a1d; box-shadow: 3px 4px #4e4e50;margin-left: 10px;border-style: none;">
+                            View Showtimes
+                        </button>
+                    </form>
+
+                </div>
+                <div class="timing">
+                    {% for show_id, show in showtimes.items() %}
+                    <a class="btn btn-primary ms-auto" role="button" href="{{url_for('booking.book_tickets', show_id=show_id)}}"
+                       style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">{{show}}</a>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+<!--Synopsis-->
+<div class="desc-container">
+    <div>
+        <p class="desc_rating"> About </p>
+    </div>
+    <div class="synopsis">
+        <p>
+            {{movie['synopsis']}}
+        </p>
+    </div>
+</div>
+
+<!--Director-->
+<div class="desc-container">
+    <div>
+        <p class="desc_rating">Director </p>
+    </div>
+    <div class="cast-crew">
+        <p>{{movie['director']}}) </p>
+    </div>
+</div>
+
+<!--Producer-->
+<div class="desc-container">
+    <div>
+        <p class="desc_rating">Producer </p>
+    </div>
+    <div class="cast-crew">
+        <p>{{movie['producer']}}</p>
+    </div>
+</div>
+
+<!--Cast & Crew-->
+<div class="desc-container">
+    <div>
+        <p class="desc_rating"> Cast </p>
+    </div>
+    <div class="cast-crew">
+        <p>{{movie['cast']}}</p>
+    </div>
+</div>
+
+
+</body>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/static/js/signup.js"></script>
+</html>
+<head>

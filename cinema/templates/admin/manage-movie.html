@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Cinema E-Booking</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="/static/css/Roboto.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/static/css/CheckOutPage-V10.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/shopping-ecommerce-products.css">
+    <link rel="stylesheet" href="/static/css/signup.css">
+    <link rel="stylesheet" href="/static/css/stylesheet.css">
+    <style>
+        label {
+            color: white;
+        }
+    </style>
+</head>
+
+<body style="background: url(&quot;/static/img/thtr_bkg.jpg&quot;) no-repeat center center fixed, #1a1a1d; background-size: cover; height: 100%;">
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean" style="height: 54px;margin-bottom: 0px;">
+        <div class="container-fluid"><a class="navbar-brand" href="{{url_for('admin.view')}}">Cinema E-Booking</a>
+            <button data-bs-toggle="collapse" data-bs-target="#navcol-1" class="navbar-toggler"></button>
+            <div class="dropdown"><a aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle" href="#" style="color: black;">Manage</a>
+                <div class="dropdown-menu"><a class="dropdown-item" href="{{url_for('admin.manage_promo')}}">Promotions</a><a class="dropdown-item" href="{{url_for('admin.manage_members')}}">Members</a><a class="dropdown-item" href="{{url_for('admin.manage_fees')}}">Prices and Fees</a></div>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav"></ul>
+            </div>
+            <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.view')}}"
+            style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Home</a>
+                <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.logout')}}" style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px;">Logout</a>
+        </div>
+    </nav>
+<h1 style="color: var(--bs-white);text-align: center;">Manage Movies</h1>
+<div class="container">
+    <div class="row">
+        {% block content %}
+        <form method="post">
+            <select class="form-input" name="selected_movie" style="width: 100%;" required>
+                <option value="NEW" selected disabled hidden>SELECT MOVIE</option>
+                {% if movies|length > 0 %}
+                {% for movie in movies %}
+                <option value="{{movie['movieID']}}">{{movie['title']}}</option>
+                {% endfor %}
+                {% endif %}
+            </select>
+            <button class="btn btn-primary" type="submit" name="action" value="edit"
+                    style="float: right; margin-top: 10px;background: #1a1a1d; box-shadow: 3px 4px rgb(255, 255, 255);margin-left: 10px;border-style: none;">
+                Edit Movie
+            </button>
+            <button class="btn btn-primary" type="submit" name="action" value="delete"
+                    style="float: right; margin-top: 10px;background: #1a1a1d; box-shadow: 3px 4px rgb(255, 255, 255);margin-left: 10px;border-style: none;">
+                Delete Movie
+            </button>
+        </form>
+        <form method="post">
+            <div>
+                <label>Movie Title</label>
+                <label style="margin-left: 45%;">Category</label>
+            </div>
+            <input name="title" type="text" class="form-control d-inline" placeholder="Movie Title"
+                   style="background: rgb(255, 255, 255);width: 50%;margin-top: 10px;" required/>
+            <select class="form-input" name="genre_id"
+                    style="display: inline;background: rgb(255, 255, 255);margin-top: 10px;width: 48.7%; height: 3.5rem;margin-left: 10px; border-radius: 5px;"
+                    required>
+                <option class="form-select" value="" disabled selected hidden>Select Category</option>
+                {% for genre in genres %}
+                <option value="{{ genre['genreID'] }}">{{ genre['genre'] }}</option>
+                {% endfor %}
+            </select>
+            <label style="margin-top: 10px;">Cast</label>
+            <input name="cast" type="text" class="form-control" placeholder="Cast"
+                   style="background: rgb(255, 255, 255);margin-top: 10px;width: 100%;" required/>
+            <div style="margin-top: 10px;">
+                <label>Director</label>
+                <label style="margin-left: 46.5%;">Producer</label>
+            </div>
+            <input name="director" type="text" class="form-control d-inline" placeholder="Director" style="background: rgb(255, 255, 255);width: 50%;margin-top: 10px;" required/>
+            <input name="producer" type="text" class="form-control d-inline-block" placeholder="Producer" style="background: rgb(255, 255, 255);margin-top: 10px;width: 48.7%;margin-left: 10px;" required/>
+            <label style="margin-top: 10px;">Synopsis</label>
+            <textarea name="synopsis" type="text" class="form-control" placeholder="Synopsis" style="overflow-wrap: break-word; background: rgb(255, 255, 255);margin-top: 10px;width: 100%;height: 10em;" required></textarea>
+            <div style="margin-top: 10px;">
+                <label>Reviews</label>
+                <label style="margin-left: 20%;">MPAA</label>
+                <label style="margin-left: 21.5%">Duration</label>
+                <label style="margin-left: 20%">Release Date</label>
+            </div>
+            <input name="reviews" type="number" step=".1" class="form-control d-inline" placeholder="IMDB Rating"
+                   style="background: rgb(255, 255, 255);width: 24%;margin-top: 10px;" required/>
+            <select name="mpaa_id" class="form-control form-input d-inline"
+                    style="background: rgb(255, 255, 255);width: 24%;margin-top: 10px; margin-left: 10px;" required>
+                <option class="form-select" value="" disabled selected hidden>Select MPAA Rating</option>
+                {% for mpaa in mpaas %}
+                <option value="{{mpaa['ratingID']}}">{{mpaa['ratingCode']}}</option>
+                {% endfor %}
+            </select><input name="duration" type="number" class="form-control d-inline-block" placeholder="Duration"
+                            style="background: rgb(255, 255, 255);margin-top: 10px;width: 24%;margin-left: 15px;"
+                            required/>
+            <input name="release_date" type="date" class="form-control d-inline-block" style="background: rgb(255, 255, 255);margin-top: 10px;width: 23.5%;margin-left: 15px;" required/>
+            <label style="margin-top: 10px;">Poster</label>
+            <input name="trailer_picture" type="text" class="form-control" placeholder="Trailer Picture Link" style="background: rgb(255, 255, 255);margin-top: 10px;width: 100%;" required/>
+            <label style="margin-top: 10px;">Trailer</label>
+            <input name="trailer_video" type="text" class="form-control" placeholder="Trailer Video Link" style="background: rgb(255, 255, 255);margin-top: 10px;width: 100%;" required/>
+            <button class="btn btn-primary" type="submit"
+                    style="float: right; margin-top: 10px; margin-bottom: 15px; background: #1a1a1d; box-shadow: 3px 4px rgb(255, 255, 255);margin-left: 10px;border-style: none;">
+                Add Movie
+            </button>
+        </form>
+        {% endblock %}
+    </div>
+</div>
+{% if error_message %}
+<!--error popup-->
+<div class="modal-dialog over">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1>Jake Modal</h1>
+        </div>
+        <div class="modal-body">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <p>Error Message</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="col-md-12">
+                <button class="btn" aria-hidden="true" onclick="window.location.href=window.location.href;">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/static/js/script.js"></script>
+<script src="/static/js/signup.js"></script>
+</body>
+
+</html>

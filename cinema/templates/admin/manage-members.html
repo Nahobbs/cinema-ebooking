@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Cinema E-Booking</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="/static/css/Roboto.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/static/css/CheckOutPage-V10.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/shopping-ecommerce-products.css">
+    <link rel="stylesheet" href="/static/css/signup.css">
+    <link rel="stylesheet" href="/static/css/stylesheet.css">
+</head>
+
+<body style="z-index: 1; background: url(&quot;/static/img/Theatre_Background.jpeg&quot;) center / cover no-repeat, #1a1a1d;">
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean" style="height: 54px;margin-bottom: 0px;">
+        <div class="container-fluid"><a class="navbar-brand" href="{{url_for('admin.view')}}">Cinema E-Booking</a>
+            <button data-bs-toggle="collapse" data-bs-target="#navcol-1" class="navbar-toggler"></button>
+            <div class="dropdown"><a aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle" href="#" style="color: black;">Manage</a>
+                <div class="dropdown-menu"><a class="dropdown-item" href="{{url_for('admin.manage_movie')}}">Movies</a><a class="dropdown-item" href="{{url_for('admin.manage_promo')}}">Promotions</a><a class="dropdown-item" href="{{url_for('admin.manage_fees')}}">Prices and Fees</a></div>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav"></ul>
+            </div>
+            <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.view')}}"
+            style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Home</a>
+                <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.logout')}}" style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px;">Logout</a>
+        </div>
+    </nav>
+<h1 style="color: var(--bs-white);text-align: center;">Manage Members</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form style="margin-top: 10px;" method="post">
+                <select class="form-input" name="user_select" style="width: 100%; height: 40px;" required>
+                    <option value="add" {% if not user %}selected{% endif %}>Add New User/Admin</option>
+                    {% for acct in users %}
+                    <option value="{{acct['email']}}" {% if user[
+                    'email'] == acct['email'] %}selected{% endif %}>{% if acct['isAdmin'] == 1 %}[ADMIN]{% else
+                    %}[USER]{% endif %}{% if acct['isSuspended'] == 1 %}[SUSPENDED]{% else %}[ACTIVE]{% endif %}
+                    {{acct['email']}}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-primary" name="action" value="edit" type="submit"
+                        style="float: right; margin-top: 10px;background: #1a1a1d; box-shadow: 3px 4px rgb(255, 255, 255);margin-left: 10px;border-style: none;">
+                    Select User
+                </button>
+                <button class="btn btn-primary" name="action" value="unsuspend" type="submit"
+                        style="float: right; margin-top: 10px;background: #1a1a1d; box-shadow: 3px 4px rgb(255, 255, 255);margin-left: 10px;border-style: none;">
+                    Unsuspend User
+                </button>
+                <button class="btn btn-primary" name="action" value="suspend" type="submit"
+                        style="float: right; margin-top: 10px;background: #1a1a1d; box-shadow: 3px 4px rgb(255, 255, 255);margin-left: 10px;border-style: none;">
+                    Suspend User
+                </button>
+            </form>
+        </div>
+        <div class="col-md-6 d-table">
+            <form method="post">
+                <input type="hidden" name="user_id" value="{{user['userID']}}">
+                <input type="text" name="fname" {% if user %}value="{{user['firstName']}}" {% endif %}
+                       class="form-control d-inline" placeholder="First Name"
+                       style="background: rgb(255, 255, 255);width: 50%;margin-top: 10px;"/><input type="text"
+                                                                                                   name="lname" {% if
+                                                                                                   user
+                                                                                                   %}value="{{user['lastName']}}"
+                                                                                                   {% endif %}
+                                                                                                   class="form-control d-inline-block"
+                                                                                                   placeholder="Last Name"
+                                                                                                   style="background: rgb(255, 255, 255);margin-top: 10px;width: 48%;margin-left: 10px;"/>
+                <input required type="text" name="email" {% if user %}value="{{user['email']}}" {% endif %} class="form-control"
+                       placeholder="Email"
+                       style="background: rgb(255, 255, 255);margin-top: 10px;width: 100%;"/>
+                <input {% if add_user %}required{% endif %} type="text" name="password" class="form-control" placeholder="Password"
+                       style="background: rgb(255, 255, 255);margin-top: 10px;width: 100%;"/>
+                <input type="text" name="phone" {% if user %}value="{{user['phone']}}" {% endif %} class="form-control"
+                       placeholder="Phone Number"
+                       style="background: rgb(255, 255, 255);margin-top: 10px;width: 100%;"/>
+                <input class="form-control" type="address" placeholder="Address"
+                       style="background: rgb(255, 255, 255);margin-top: 10px;width: 100%;" name="street"
+                       {% if user_address %}value="{{user_address['street']}}" {% endif %}>
+                <input class="form-control" type="address" placeholder="City"
+                       style="background: rgb(255, 255, 255);margin-top: 10px;width: 100%;" name="city"
+                       {% if user_address %}value="{{user_address['city']}}" {% endif %}>
+                <select class="form-control d-inline" name="state"
+                        style="background: rgb(255, 255, 255);margin-top: 10px;width: 49%;">
+                    <option value="">Select State *</option>
+                    {% for key, val in states.items() %}
+                    <option value="{{key}}" {% if user_address and key== user_address[
+                    'state'] %}selected{% endif %}>{{val}}</option>
+                    {% endfor %}
+                </select>
+                <input class="form-control d-inline" type="number" max="99999" placeholder="Zipcode"
+                       style="background: rgb(255, 255, 255);margin-top: 10px;width: 48%; margin-left: 10px;"
+                       name="zipcode"
+                       value="{{user_address['zipcode']}}">
+                <input id="e_check" class="form-input" type="checkbox" name="email_confirmed"
+                       style="color: rgb(255, 255, 255);margin-top: 10px;" {% if user and user['email_confirmed']==1 %}checked{% endif %}><label for="e_check" style="color: white; margin-left: 5px;">Email
+                Confirmed</label>
+                <input id="e_check" class="form-input" type="checkbox" name="promotions" {% if user and user['promotions']==1
+                %}checked{% endif %}><label for="p_check" style="color: white; margin-left: 5px;">Recieve
+                Promotions</label>
+                {% if add_user %}
+                <button class="btn btn-primary" type="submit" name="action" value="add_admin"
+                        style="float: right; margin-top: 10px;background: #1a1a1d; box-shadow: 3px 4px rgb(255, 255, 255);margin-left: 10px;border-style: none;">
+                    Add Admin
+                </button>
+                <button class="btn btn-primary" type="submit" name="action" value="add_user"
+                        style="float: right; margin-top: 10px;background: #1a1a1d; box-shadow: 3px 4px rgb(255, 255, 255);margin-left: 10px;border-style: none;">
+                    Add User
+                </button>
+                {% endif %}
+                {% if edit_user %}
+                <button class="btn btn-primary" type="submit" name="action" value="update_user"
+                        style="float: right; margin-top: 10px;background: #1a1a1d; box-shadow: 3px 4px rgb(255, 255, 255);margin-left: 10px;border-style: none;">
+                    Save Changes
+                </button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% if error_message %}
+<!--error popup-->
+<div class="modal-dialog over">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1>Whoops!</h1>
+        </div>
+        <div class="modal-body">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <p>{{error_message}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="col-md-12">
+                <button class="btn" aria-hidden="true" onclick="window.location.href=window.location.href;">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/static/js/script.js"></script>
+<script src="/static/js/signup.js"></script>
+</body>
+
+</html>

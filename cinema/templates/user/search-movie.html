@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/Roboto.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/fonts/fontawesome5-overrides.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/CheckOutPage-V10.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/shopping-ecommerce-products.css') }}">
+    <link rel="stylesheet" href="/static/css/stylesheet.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/search-control.css') }}">
+
+
+</head>
+<body>
+<nav class="navbar navbar-light navbar-expand bg-light navigation-clean"
+     style="margin-bottom: 0px;height: 54px;background: #f8f9fa;">
+    <div class="container-fluid"><a class="navbar-brand" href="{{url_for('user.view')}}">Cinema E-Booking</a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav">
+                <li class="nav-item"></li>
+                <li class="nav-item"><a class="nav-link active" href="#out-now"></a></li>
+                <li class="nav-item"><a class="nav-link" href="#coming-soon"></a></li>
+                <li class="nav-item"></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+            </ul>
+        </div>
+        <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.edit_profile')}}"
+           style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Profile</a>
+        <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.logout')}}"
+           style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Logout</a>
+        <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.view')}}"
+           style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Home</a>
+    </div>
+</nav>
+<form method="post">
+    <div class="search">
+        <input type="text" name="movie_title" placeholder="Seach movie by title ..."
+               style="width: 33%; display: inline; box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-top: 15px; margin-left: 33%;">
+    </div>
+    <button type="submit" class="btn btn-primary"
+            style="display: inline; background: #c3073f;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px;">
+        Find
+    </button>
+    </div>
+    <div class="filter-container">
+        <select name="category" required>
+            <option class="filter" value="" disabled selected hidden>Filter Movies by Category</option>
+            <option>All</option>
+            <option value="Released">Running in theatres</option>
+            <option value="Coming Soon">Coming Soon</option>
+        </select>
+    </div>
+</form>
+<div style="display: flex; justify-content: center; margin-top: 30px;">
+    <form method="post">
+        {% for genre in genres %}
+        <button class="btn btn-primary ms-auto" type="submit" name="genreID" value="{{genre['genreID']}}"
+                style="background: #c3073f;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-top: 10px; margin-right: 10px;">
+            {{genre['genre']}}
+        </button>
+        {% endfor %}
+    </form>
+</div>
+<!--Movie Card-->
+<div class="container">
+    <div class="coming-soon-carousel carousel">
+        <div class="coming-soon-carouselbox carouselbox">
+            <!-- data -->
+            {% for movie in movies %}
+            <div class="movie-container">
+                <img class="img-0slider-img&quot;" src="{{movie['trailerPictureLink']}}">
+                <button type="button"
+                        onclick="location.href='{{ url_for('user.show_timing', movie_id=movie['movieID']) }}'"
+                        class="view-trailer">Show Times
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="switchLeft sliderButton" onclick="sliderScrollLeft('coming-soon-carouselbox')"><</a>
+        <a class="switchRight sliderButton" onclick="sliderScrollRight('coming-soon-carouselbox')">></a>
+    </div>
+
+</div>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/static/js/signup.js"></script>
+<script src="/static/js/script.js"></script>
+
+</body>
+</html>

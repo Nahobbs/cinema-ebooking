@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+   <link rel="stylesheet" href="assets/css/edit_profile.css">
+   <title>Edit Info</title>
+</head>
+
+<body>
+    <div class="container"> 
+        <div class="sidebar">
+           
+           <ul class="nav_list" list-style="none">
+                <ol list-style="none">
+                    <a href="index-signed-in.html">
+
+                     <span class="links_name">Home</span>
+                    </a> 
+            
+            <ul class="nav_list" list-style="none">
+                <ol list-style="none">
+                    <a href="edit_info.html">  
+                     
+                    <span class="links_name">Edit Profile</span>
+                    </a>   
+                      
+                </ol>
+                <ol>
+                    <a href="change_pwd.html">  
+                    <span class="links_name">Change Password</span>
+                    </a>   
+                </ol> 
+                <ol>          
+                <a href="paymentmethod.html#">  
+                <span class="links_name">Manage Payment</span>
+                </a>   
+            </ol>  
+            </ul>  
+        </div>
+        <div class="form">
+        <h2>Manage Payment Information</h2>
+        <select class="form-input" name="paymentmethod" required>
+                    <option class="form-select" value=""disabled selected hidden>Select Payment Method*</option>    
+                    <option value="1"></option>   
+                    <option value="2"></option>
+                    <option value="3"></option>                
+        </select>
+        <input class="form-input" type="name" placeholder="Name on Card*">
+        <input class="form-input" type="name" placeholder="Card Number*" maxlength="16">
+        <select class="form-input" name="Month" required>
+             <option class="form-select" value=""disabled selected hidden>Month*</option>    
+             <option value="1">Jan</option>   
+             <option value="2">Feb</option>
+             <option value="3">Mar</option>
+             <option value="4">Apr</option>
+             <option value="5">May</option>
+             <option value="6">Jun</option>
+             <option value="7">Jul</option>
+             <option value="8">Aug</option>
+             <option value="9">Sep</option>
+             <option value="10">Oct</option>
+             <option value="11">Nov</option>
+             <option value="12">Dec</option>                
+        </select>
+       <select class="form-input" name="Year" required>
+        <option class="form-select" value=""disabled selected hidden>Year*</option>    
+        <option value="1">2021</option>   
+        <option value="2">2022</option>
+        <option value="3">2023</option>
+        <option value="4">2024</option>
+        <option value="5">2025</option>
+        <option value="6">2026</option>
+        <option value="7">2027</option>
+        <option value="8">2028</option>
+        <option value="9">2029</option>
+        <option value="10">2030</option>                
+   </select>
+   <input class="form-input" type="name" placeholder="CVV*" maxlength="4">
+   <input class="form-input" type="name" placeholder="ZipCode*">
+   <div>
+    <button type="submit" class="btn">Save Changes</button>
+</div>
+        </div>
+    <script src="signup.js"> </script>
+
+</body>
+</html>

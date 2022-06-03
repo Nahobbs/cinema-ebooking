@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/Roboto.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/fonts/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/fonts/fontawesome5-overrides.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/CheckOutPage-V10.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/Login-Form-Dark.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/shopping-ecommerce-products.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/signup.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/stylesheet.css') }}">
+</head>
+
+<body class="signin-body" style="background: #f8f9fa;">
+<div class="signin-container">
+    <div class="signin">
+        <form class="signin-form" action="" method="post">
+            <h1>Sign In</h1>
+            <input type="email" placeholder="Email" name="email_signin" required>
+            <input type="password" placeholder="Password" name="password" required>
+            <a href="#" data-target="#pwdModal" data-toggle="modal">Forgot your password?</a>
+
+            <button type="submit" class="signin-btn">Sign in</button>
+            <span class="mobile-only">New Here?</span>
+            <button type="button" class="signin-btn mobile-only" name="asdf">Sign up</button>
+        </form>
+        <div class="side">
+            <h1>WELCOME!</h1>
+            <p>SIGNUP TO START ENJOYING YOUR MOVIE BENEFITS</p>
+            <button class="signin-btn">Sign up</button>
+        </div>
+    </div>
+    <div class="signup hidden">
+        <form class="signin-form" action="" method="post">
+            <h1>Create Account</h1>
+            <div class="social-container">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="name-field" id="firstControl">
+                <input class="form-input" type="text" placeholder="First Name" id="f-name" name="fname">
+                <input class="form-input" type="text" placeholder="Last Name" id="l-name" name="lname">
+                <small>error message</small>
+            </div>
+            <div class="signin-form-control">
+                <input class="doesnt-exist" type="email" placeholder="Email" id="email" name="email_signup">
+                <small>error message</small>
+            </div>
+            <div class="signin-form-control">
+                <input class="form-input" type="password" placeholder="Password" id="password" name="password1">
+                <small>error message</small>
+            </div>
+            <div class="signin-form-control">
+                <input type="password" placeholder="Re-enter Password" id="password2" name="password2">
+                <small>error message</small>
+            </div>
+            <div class="signin-form-control">
+                <input type="tel" placeholder="Phone" id="phone" name="phone">
+                <small>error message</small>
+            </div>
+            <div style="float: inline-start;">
+                <input id="sub-in" type="checkbox" name="subscribe" value="true" style="float:left; margin-left: -20%;">
+                <label id="subscribe" style="margin-top: 6%; margin-left: -3%;">Subscribe to email promotions?</label>
+            </div>
+            <button type="submit" class="signin-btn">Sign Up</button>
+            <span class="mobile-only">New Here?</span>
+            <button type="button" class="signin-btn mobile-only">Sign up</button>
+        </form>
+        <div class="side">
+            <h1>Welcome Back!</h1>
+            <p>To keep connected with us please login with your personal info</p>
+            <button class="signin-btn">Sign in</button>
+        </div>
+    </div>
+</div>
+<!--modal-->
+<div id="pwdModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1 class="text-center">Forgot your password?</h1>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="text-center">
+
+                                <p>If you have forgotten your password you can reset it here.</p>
+                                <div class="panel-body">
+                                    <form class="forgot-form" method="post">
+                                        <div class="form-group">
+                                            <input class="form-control input-lg" placeholder="E-mail Address"
+                                                   name="email_forgot_password" type="email">
+                                        </div>
+                                        <input class="btn btn-lg btn-primary btn-block ms-auto"
+                                               style="background: #950740;" value="Send Recovery Email" type="submit">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if error_message %}
+<!--error popup-->
+<div class="modal-dialog over">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1>Something's not right...</h1>
+        </div>
+        <div class="modal-body">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <p>{{error_message}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="col-md-12">
+                <button class="btn" aria-hidden="true" onclick="window.location.href=window.location.href;">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+</body>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/static/js/signup.js"></script>
+
+</html>

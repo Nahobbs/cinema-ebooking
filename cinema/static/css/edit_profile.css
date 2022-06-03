@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat" , sans-serif;
+}
+
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    background-color: #f6f5f7;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    width: 1500px;
+    height: 700px;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+                0 10px 10px rgba(0,0,0,0.22);
+    overflow: scroll;
+ }
+
+.sidebar{
+    position: fixed;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+                0 10px 10px rgba(0,0,0,0.22);
+    height: 700px;
+    width:240px;
+    background: #6f2232;
+    overflow: hidden;
+    padding: 6px 10px;
+
+}
+
+.sidebar ul{
+    margin-top: 20px;
+}
+.sidebar ul ol{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    list-style: none;
+    line-height: 50px;
+    border-radius: 12px;
+}
+
+
+.sidebar ul ol a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: a 0.3s ease;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+ .sidebar ul ol a:hover{
+     color: rgb(41, 41, 41);
+     background: #fff;
+ }
+
+ .form-input{
+    background-color: rgb(221, 219, 219);
+    width: 80%;
+    height: 40px;
+    margin-top: 15px;
+    padding-left: 10px;
+    border: none;
+ }
+
+ .form{
+     position: absolute;
+     height: 100%;
+     width: calc(100%-240px);
+     left: 240px;
+     margin: 30px;
+     width: 50%;
+   height: 100%;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   display: inline;
+ }
+
+  .form2{
+     position: absolute;
+     height: 100%;
+     width: calc(100%-240px);
+     left: 240px;
+     top:250px;
+     margin: 30px;
+     width: 50%;
+   height: 100%;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   display: inline;
+ }
+
+ .btn{
+    position: relative;
+    cursor: pointer;
+    background-color: #950740;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 20px;
+    width: 140px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+ }
+
+ .btn:hover{
+    transform: scale(0.9);
+ }
+
+ .h1{
+     text-align: center;
+ }

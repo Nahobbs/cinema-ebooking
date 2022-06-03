@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Cinema E-Booking</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="/static/css/Roboto.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/static/css/CheckOutPage-V10.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Dark.css">
+    <link rel="stylesheet" href="/static/css/shopping-ecommerce-products.css">
+    <link rel="stylesheet" href="/static/css/signup.css">
+    <link rel="stylesheet" href="/static/css/stylesheet.css">
+    <style>
+        label {
+            color: white;
+            font-size: medium;
+        }
+    </style>
+</head>
+
+<body style="background: url(&quot;/static/img/curtain.jpg&quot;) no-repeat center center fixed, #1a1a1d; background-size: cover; height: 100%;">
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean" style="height: 54px;margin-bottom: 0px;">
+        <div class="container-fluid"><a class="navbar-brand" href="{{url_for('admin.view')}}">Cinema E-Booking</a>
+            <button data-bs-toggle="collapse" data-bs-target="#navcol-1" class="navbar-toggler"></button>
+            <div class="dropdown"><a aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle" href="#" style="color: black;">Manage</a>
+                <div class="dropdown-menu"><a class="dropdown-item" href="{{url_for('admin.manage_movie')}}">Movies</a><a class="dropdown-item" href="{{url_for('admin.manage_promo')}}">Promotions</a><a class="dropdown-item" href="{{url_for('admin.manage_members')}}">Members</a></div>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav"></ul>
+            </div>
+            <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.view')}}"
+            style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px; margin-right: 20px;">Home</a>
+                <a class="btn btn-primary ms-auto" role="button" href="{{url_for('user.logout')}}" style="background: #950740;border-style: none;box-shadow: 3px 4px var(--bs-gray-800), 0px 0px;">Logout</a>
+        </div>
+    </nav>
+    <h1 style="color: var(--bs-white);text-align: center;">Manage Ticket Prices and Booking Fees</h1>
+    <div class="container" style="margin-top: 150px;">
+        <div class="row">
+            <div class="col-md-12 d-table">
+                <form id="1" method="post">
+                    <h1 class="text-center" style="color: var(--bs-white);">Ticket Prices</h1>
+                    <div class="col-md-4">
+                        <label>Child</label>
+                        <input class="form-control" type="number" value="{{child_price}}" min="0.00" max="10000.00" step="0.01" name="child_price" style="width: 100%;">
+                        <button class="btn btn-primary" type="submit" style="background: #1a1a1d; border-style: none;box-shadow: 3px 4px;margin-top: 10px;" data-bs-target="#modal-1" data-bs-toggle="modal">Update Ticket Prices</button>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Adult</label>
+                        <input class="form-control" type="number" value="{{adult_price}}" min="0.00" max="10000.00" step="0.01" name="adult_price"  style="width: 100%;">
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <label>Senior</label>
+                        <input class="form-control" type="number" value="{{senior_price}}" min="0.00" max="10000.00" step="0.01" name="senior_price"  style="width: 100%;">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 d-table">
+                <h1 class="text-center" style="color: var(--bs-white);">Booking Fees</h1>
+                <div class="col-md-6">
+                    <form style="margin-top: 20px;" id="2" method="post">
+                        <input class="form-control" type="number" min="0.00" max="10000.00" step="0.01" value="{{booking_fee}}" name='booking_fee' placeholder="Booking Fee">
+                        <button class="btn btn-primary" type="submit" style="background: #1a1a1d; border-style: none;box-shadow: 3px 4px;margin-top: 10px;" data-bs-target="#modal-1" data-bs-toggle="modal">Update Booking Fee</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if error_message %}
+    <!--error popup-->
+    <div class="modal-dialog over">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>Jake Modal</h1>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="text-center">
+                                <p>Error Message</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <button class="btn" aria-hidden="true" onclick="window.location.href=window.location.href;">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/static/js/script.js"></script>
+    <script src="/static/js/signup.js"></script>
+</body>
+
+</html>
